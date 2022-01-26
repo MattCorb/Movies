@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "App Submitted";
+}
+
+@model DateME.Models.ApplicationResponse
+@if (Model.Crepe == false)
+{
+<h1>it worked good job. thanks @Model.FirstName</h1>
+
+}
+else { 
+
+<h1>No thanks</h1>
+
+}

@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Dating Applicatoin";
+}
+
+@model DateME.Models.ApplicationResponse
+
+<h1>Fill out dating application</h1>
+
+
+<div>
+    <form method="post" >
+        <label asp-for="FirstName">First Name</label>
+        <input asp-for="FirstName" /><br />
+        <label asp-for="LastName">Last Name</label>
+        <input asp-for="LastName" /><br />
+        <label asp-for="Age">Age</label>
+        <input asp-for="Age" type="number" /><br />
+        <label asp-for="PhoneNumber">Phone Number</label>
+        <input asp-for="PhoneNumber" /><br />
+        <label asp-for="Major">Major</label>
+        <input asp-for="Major" /><br />
+        <label asp-for="Crepe">Crepe</label>
+
+        <select asp-for="Crepe">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+
+
+        </select>
+            
+        
+        
+        <br />
+        <button type="submit">Submit Application</button>   
+    </form>
+</div>
