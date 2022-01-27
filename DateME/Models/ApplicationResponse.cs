@@ -11,11 +11,19 @@ namespace DateME.Models
         [Key]
         [Required]
         public int ApplicationId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public byte Age { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Major { get; set; }
-        public bool Crepe { get; set; }
+        [Required]
+        public string Category { get; set; }
+        [Required]
+        public string Title { get; set; }
+        [Required]
+        public int Year { get; set; }
+        [Required]
+        public string Director { get; set; }
+        [Required]
+        public string Rating { get; set; }
+        public bool Edited { get; set; }
+        public string LentTo { get; set; }
+        public string Notes { get; set; }
+
     }
 }

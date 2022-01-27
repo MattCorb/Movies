@@ -1,36 +1,59 @@
 ﻿@{
-    ViewData["Title"] = "Dating Applicatoin";
+    ViewData["Title"] = "Movie Form";
 }
 
 @model DateME.Models.ApplicationResponse
 
-<h1>Fill out dating application</h1>
+<h1>Fill out Movie Info</h1>
 
 
 <div>
-    <form method="post" >
-        <label asp-for="FirstName">First Name</label>
-        <input asp-for="FirstName" /><br />
-        <label asp-for="LastName">Last Name</label>
-        <input asp-for="LastName" /><br />
-        <label asp-for="Age">Age</label>
-        <input asp-for="Age" type="number" /><br />
-        <label asp-for="PhoneNumber">Phone Number</label>
-        <input asp-for="PhoneNumber" /><br />
-        <label asp-for="Major">Major</label>
-        <input asp-for="Major" /><br />
-        <label asp-for="Crepe">Crepe</label>
+    <form method="post">
+        <!--Cateogry input-->
+        <label asp-for="Category">Category</label>
+        <input asp-for="Category" /><br />
 
-        <select asp-for="Crepe">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
+        <!--Title input-->
+        <label asp-for="Title">Title</label>
+        <input asp-for="Title" /><br />
+
+        <!--Year input-->
+        <label asp-for="Year">Year</label>
+        <input asp-for="Year" /><br />
+
+        <!--Director input-->
+        <label asp-for="Director">Director</label>
+        <input asp-for="Director" /><br />
+
+        <!--Rating input - dropdown -->
+        <label asp-for="Rating">Rating</label>
+        <select asp-for="Rating">
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+        </select><br />
+
+        <!--Edited input - checkbox-->
+        <label asp-for="Edited">Edited</label>
+        <input asp-for="Edited" type="checkbox" /><br />
+
+        <!--Lent to - checkbox-->
+        <label asp-for="LentTo">Lent To</label>
+        <input asp-for="LentTo" /><br />
+
+        <!--Notes input-->
+        <label asp-for="Notes">Notes</label>
+        <input asp-for="Notes" maxlength="25" width="30" /><br />
 
 
-        </select>
-            
-        
-        
         <br />
-        <button type="submit">Submit Application</button>   
+        <!--submit button-->
+        <button type="submit">
+            Submit
+        </button>
+
+        <!--validation summary-->
+        <div asp-validation-summary="All"></div>
     </form>
 </div>

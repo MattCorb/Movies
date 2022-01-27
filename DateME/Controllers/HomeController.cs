@@ -18,28 +18,43 @@ namespace DateME.Controllers
             _logger = logger;
             _blahContext = someName;
         }
-
+        //initial index view
         public IActionResult Index()
         {
             return View();
         }
+        //Movie form get
         [HttpGet]
         public IActionResult FillOutApplication()
         {
             return View("DatingApplication");
         }
 
+        //Movie form post
         [HttpPost]
         public IActionResult FillOutApplication(ApplicationResponse ar)
         {
-            _blahContext.Add(ar);
-            _blahContext.SaveChanges();
-
-            return View("Confirmation", ar);
+            if (ModelState.IsValid)
+            {
+                _blahContext.Add(ar);
+                _blahContext.SaveChanges();
+                return View("Index", ar);
+            }
+            else
+            {
+                return View("DatingApplication", ar);
+            }
+            
         }
         public IActionResult Privacy()
         {
             return View();
+        }
+        //Podcast view
+        [HttpGet]
+        public IActionResult Confirmation()
+        {
+            return View("Confirmation");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
