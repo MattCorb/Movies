@@ -15,15 +15,21 @@ namespace DateME.Models
         }
 
         public DbSet<ApplicationResponse> Responses {get; set;}
+        public DbSet<Category> Categories { get; set; }
 
         //seed the database with json objects
         protected override void OnModelCreating(ModelBuilder mb)
         {
+            mb.Entity<Category>().HasData(
+                new Category { CategoryId = 1, CategoryName = "Comedy" },
+                new Category { CategoryId = 2, CategoryName = "Action" },
+                new Category { CategoryId = 3, CategoryName = "Drama" }
+                ) ;
             mb.Entity<ApplicationResponse>().HasData(
                 new ApplicationResponse
                 {
                     ApplicationId = 1,
-                    Category = "Comdedy",
+                    Categoryid = 1,
                     Title = "Dumb & Dumber",
                     Year = 1994,
                     Director = "The Farrelly Brothers",
@@ -37,7 +43,7 @@ namespace DateME.Models
                 new ApplicationResponse
                 {
                     ApplicationId = 2,
-                    Category = "Comdedy",
+                    Categoryid = 2,
                     Title = "Ferris Bueller’s Day Off",
                     Year = 1986,
                     Director = "John Hughes",
@@ -49,7 +55,7 @@ namespace DateME.Models
                 new ApplicationResponse
                  {
                      ApplicationId = 3,
-                     Category = "Comdedy",
+                     Categoryid = 3,
                      Title = "Fletch",
                      Year = 1985,
                      Director = "Michael Ritchie",

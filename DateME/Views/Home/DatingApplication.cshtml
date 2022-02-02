@@ -4,14 +4,24 @@
 
 @model DateME.Models.ApplicationResponse
 
+
+
 <h1>Fill out Movie Info</h1>
 
 
 <div>
     <form method="post">
         <!--Cateogry input-->
-        <label asp-for="Category">Category</label>
-        <input asp-for="Category" /><br />
+        <label asp-for="Categoryid">Category</label>
+           
+        <select asp-for="Categoryid">
+            <option value="">Select a Category</option>
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select>
+        <br />
 
         <!--Title input-->
         <label asp-for="Title">Title</label>
@@ -52,7 +62,10 @@
         <button type="submit">
             Submit
         </button>
-
+       @if (ViewBag.Edit == true)
+       {
+        <input type="hidden"  asp-for="ApplicationId"/>
+       }
         <!--validation summary-->
         <div asp-validation-summary="All"></div>
     </form>

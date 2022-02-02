@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DateME.Migrations
 {
     [DbContext(typeof(DateApplicationContext))]
-    [Migration("20220126215220_Initial")]
+    [Migration("20220131050818_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,9 +23,8 @@ namespace DateME.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Categoryid")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -53,13 +52,15 @@ namespace DateME.Migrations
 
                     b.HasKey("ApplicationId");
 
+                    b.HasIndex("Categoryid");
+
                     b.ToTable("Responses");
 
                     b.HasData(
                         new
                         {
                             ApplicationId = 1,
-                            Category = "Comdedy",
+                            Categoryid = 1,
                             Director = "The Farrelly Brothers",
                             Edited = false,
                             Rating = "PG-13",
@@ -69,7 +70,7 @@ namespace DateME.Migrations
                         new
                         {
                             ApplicationId = 2,
-                            Category = "Comdedy",
+                            Categoryid = 2,
                             Director = "John Hughes",
                             Edited = false,
                             Rating = "PG-13",
@@ -79,13 +80,53 @@ namespace DateME.Migrations
                         new
                         {
                             ApplicationId = 3,
-                            Category = "Comdedy",
+                            Categoryid = 3,
                             Director = "Michael Ritchie",
                             Edited = false,
                             Rating = "PG",
                             Title = "Fletch",
                             Year = 1985
                         });
+                });
+
+            modelBuilder.Entity("DateME.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Comedy"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Action"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Drama"
+                        });
+                });
+
+            modelBuilder.Entity("DateME.Models.ApplicationResponse", b =>
+                {
+                    b.HasOne("DateME.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("Categoryid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
